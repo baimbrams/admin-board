@@ -16,6 +16,8 @@ import {
 } from "../ui/form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const formSchema = z.object({
   name: z
@@ -36,8 +38,17 @@ export const StoreModal = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    //Todo: create store
-    console.log(values);
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/stores", values);
+      console.log(response.data);
+      toast.success("Berhasil membuat toko");
+      // window.location.assign(`/${response.data.id}`);
+    } catch (error) {
+      toast.error("Gagal Membuat Toko");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
