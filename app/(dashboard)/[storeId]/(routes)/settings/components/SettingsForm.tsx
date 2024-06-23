@@ -61,21 +61,6 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     } finally {
       setLoading(false);
     }
-
-    const onDelete = async () => {
-      try {
-        setLoading(true);
-        await axios.delete(`/api/stores/${params.storeId}`);
-        router.refresh();
-        router.push("/");
-        toast.success("Toko berhasil dihapus");
-      } catch (error) {
-        toast.error("Cek kembali data dan koneksi mu");
-      } finally {
-        setLoading(false);
-        setOpen(false);
-      }
-    };
   };
 
   const onDelete = async () => {
