@@ -4,12 +4,13 @@ import { ApiList } from "@/components/ui/api-list";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { Banner } from "@prisma/client";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+import { BannerColumn, columns } from "./columns";
+import { DataTable } from "@/components/ui/data-table";
 
 interface BannersClientProps {
-  data: Banner[];
+  data: BannerColumn[];
 }
 
 export const BannersClient: React.FC<BannersClientProps> = ({ data }) => {
@@ -32,10 +33,11 @@ export const BannersClient: React.FC<BannersClientProps> = ({ data }) => {
         </Button>
       </div>
       <Separator />
-      {/* <p>Data Table</p>
-      <Heading title="API" description="API untuk Banners" />
+      <DataTable data={data} columns={columns} searchKey="label" />
       <Separator />
-      <ApiList namaIndikator="banners" idIndikator="id" /> */}
+      <Heading title="API" description="API untuk Banners" />
+
+      <ApiList namaIndikator="banners" idIndikator="id" />
     </>
   );
 };
